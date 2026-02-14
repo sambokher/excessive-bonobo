@@ -5,33 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>excessive-bonobo</title>
   <style>
+    :root {
+      --bg: #f3f4f6;
+      --text: #0f172a;
+      --pill-bg: rgba(255, 255, 255, 0.72);
+      --pill-border: rgba(15, 23, 42, 0.10);
+      --shadow: 0 18px 55px rgba(15, 23, 42, 0.18);
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      color: #ffffff;
-      /* Meshy blue gradient */
+      color: var(--text);
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    /* Meshed, soft blue/yellow like the reference */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -20vmax;
       background:
-        radial-gradient(900px 700px at 15% 20%, rgba(72, 170, 255, 0.85) 0%, rgba(72, 170, 255, 0) 60%),
-        radial-gradient(800px 650px at 85% 25%, rgba(0, 120, 255, 0.75) 0%, rgba(0, 120, 255, 0) 60%),
-        radial-gradient(900px 700px at 40% 85%, rgba(0, 200, 255, 0.45) 0%, rgba(0, 200, 255, 0) 60%),
-        radial-gradient(700px 600px at 75% 80%, rgba(40, 90, 255, 0.45) 0%, rgba(40, 90, 255, 0) 60%),
-        linear-gradient(135deg, #061a3a 0%, #0a2a66 40%, #06325c 100%);
-      background-attachment: fixed;
+        radial-gradient(900px 700px at 18% 28%, rgba(84, 154, 255, 0.65) 0%, rgba(84, 154, 255, 0) 62%),
+        radial-gradient(850px 650px at 82% 30%, rgba(110, 210, 255, 0.55) 0%, rgba(110, 210, 255, 0) 62%),
+        radial-gradient(900px 700px at 22% 78%, rgba(255, 214, 95, 0.60) 0%, rgba(255, 214, 95, 0) 62%),
+        radial-gradient(900px 700px at 78% 82%, rgba(255, 190, 92, 0.55) 0%, rgba(255, 190, 92, 0) 62%),
+        linear-gradient(135deg, #eaf2ff 0%, #f8fbff 38%, #fff7df 100%);
+      filter: blur(18px) saturate(1.08);
+      transform: translateZ(0);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    /* Subtle dotted/noise grid feel */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(rgba(15, 23, 42, 0.06) 0.6px, rgba(0, 0, 0, 0) 0.6px);
+      background-size: 12px 12px;
+      opacity: 0.18;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     h1 {
-      font-size: 3rem;
       margin: 0;
-      color: #ffffff;
-      text-shadow: 0 6px 28px rgba(0, 0, 0, 0.35);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: rgba(15, 23, 42, 0.9);
     }
   </style>
 </head>
 <body>
-  <h1>Hello world</h1>
+  <div class="pill">
+    <h1>Hello world</h1>
+  </div>
 </body>
 </html>
